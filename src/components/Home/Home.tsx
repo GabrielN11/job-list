@@ -34,7 +34,7 @@ const Home = (props: Props) => {
             orderByDate: orderByDate ? 'true' : ''
         }))
         const data = await resp.json()
-        setFullyLoaded(data.length === jobs.length ? true : false) // disabled the 'load more' button if all the data is loaded
+        setFullyLoaded((data.length === jobs.length && data.length >=20) ? true : false) // disabled the 'load more' button if all the data is loaded
         setJobs(data) //set a new job list from the api
         toggleLoading(false) //disables he loading element
     }
