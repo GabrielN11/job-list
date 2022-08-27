@@ -9,11 +9,13 @@
     border: none;
     padding: 10px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 @media(max-width: 1000px){
     .load_more{
-        width: 100%;
-        margin: 10px;
+        display: block;
+        width: 250px;
+        margin: 10px auto;
     }
 }

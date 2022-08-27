@@ -10,15 +10,21 @@ type Props = {
 
 
 export default function JobContainer(props: Props) {
+
+    //this state receives the first job to be displayed when the page loads
     const [job, setJob] = useState<Job>(props.job)
+
+    //this state have the html string from the api
     const [description, setDescription] = useState<string>(props.job.jobDescription)
+
     const {activeJob} = useContext(GlobalContext)
+
     useEffect(() => {
         if(activeJob){
             setJob(activeJob)
             setDescription(activeJob.jobDescription)
         }
-    }, [activeJob])
+    }, [activeJob])// whenever the active job changes, this use effect is called to update the states
     return (
         <div className={styles.container}>
             <div>
@@ -29,6 +35,7 @@ export default function JobContainer(props: Props) {
             </div>
             <div className={styles.description}>
                 <h3>Job Description</h3>
+                {/*the parse function inserts the html string from the API in the DOM*/}
                 <div>{parse(description)}</div>
             </div>
         </div>

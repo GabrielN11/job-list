@@ -1,35 +1,34 @@
 import type { NextPage } from 'next'
-import { getJobs } from '../../../src/utils/api_call'
-import Job from '../../../src/models/Job'
 import { GlobalProvider } from '../../../src/Context'
 import Home from '../../../src/components/Home/Home'
+import Head from 'next/head'
 
-type Props = {
-  jobs: Job[]
-  error: boolean
-}
-
-export async function getServerSideProps(): Promise<{ props: Props }> {
-  let error = false;
-  let jobs: Job[] = [];
+//uses getServerSideProps the SSR the first 10 jobs
+export async function getServerSideProps(): Promise<any> {
   try {
-    jobs = await getJobs(10);
-  }
-  catch (e) {
-    error = true;
-  } finally {
+    const resp = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/jobs')
+
+    const jobs = await resp.json()
+
     return {
       props: {
         jobs,
-        error
       },
     }
+
+  }
+  catch (e) {
+
   }
 }
 
-const MainPage: NextPage<Props> = (props) => {
+const MainPage: NextPage<any> = (props) => {
   return (
     <GlobalProvider>
+      <Head>
+        <title>Zippia Job List</title>
+        <meta name='description' content='Search for job opportunities, remote jobs and more.'/>
+      </Head>
       <Home jobs={props.jobs}/>
     </GlobalProvider>
   )

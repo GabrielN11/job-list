@@ -1,0 +1,21 @@
+.icon{
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    opacity: 0.5;
+    width: 40px;
+    height: 40px;
+    transition: .5s opacity;
+}
+
+.icon:hover{
+    opacity: 1;
+}
+
+@media(max-width: 1000px){
+    .icon{
+        top: unset;
+        bottom: 40px;
+        left: 10px;
+    }
+}

@@ -21,6 +21,21 @@
     background-color: #f7f8f9;
 }
 
+.active_button{
+    background-color: #3174ee;
+    color: #fff;
+}
+
+.active_button:hover{
+    background-color: #3174ee !important;
+    color: #fff !important;
+}
+
+.label{
+    margin: 0;
+    align-self: center;
+}
+
 @media(max-width: 1000px){
     .filter{
         width: 100vw;
